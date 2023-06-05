@@ -13,14 +13,14 @@ class AuditService
     public static function createSingleEventAudit($model, string $event = '')
     {
         try {
-            Audit::insert([
-                'user_id' => \Auth::user()->id,
-                'event' => $event,
+            Audit::create([
+                'user_id' => 1,
+                'event_type' => $event,
                 'model_id' => $model->getKey(),
                 'table_name' => $model->getTable(),
-                'old_data' => $model->getOriginal() ?? [],
-                'new_data' => $model->toArray() ?? [],
-                'diff_data' => self::getModelDiff($model)
+                'old_data' => json_encode($model->getOriginal() ?? []),
+                'new_data' => json_encode($model->toArray() ?? []),
+                'diff_data' => json_encode(self::getModelDiff($model))
             ]);
         } catch (\Throwable $th) {
             Log::debug('failed to save audit: ' . $th->getMessage() . '|' . $th->getFile() . '|' . $th->getLine());
