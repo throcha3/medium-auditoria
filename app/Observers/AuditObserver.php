@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Services\Logs\AuditService;
+use App\Services\AuditService;
 
 class AuditObserver
 {
