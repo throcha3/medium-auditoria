@@ -10,4 +10,9 @@ class Product extends Model
 {
     use HasFactory;
     use AuditTrait;
+
+    protected $fillable = [
+        'name',
+        'value',
+    ];
 }
