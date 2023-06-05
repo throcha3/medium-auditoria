@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Audit extends Model
 {
-    use HasFactory;
+    const EVENT_UPDATE = 'update';
+
+    protected $fillable = [
+        'user_id',
+        'event',
+        'model_id',
+        'old_data',
+        'new_data',
+        'diff_data'
+    ];
 }
